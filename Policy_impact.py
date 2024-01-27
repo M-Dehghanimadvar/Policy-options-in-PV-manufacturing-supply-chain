@@ -36,7 +36,7 @@ def calculate_irr_analysis(analysis, selling_price, Labour, final_cost, income, 
                     (selling_price - cash_flow),
                     (selling_price - (cash_flow - Working_Capital))])
 
-def main():
+def main(Capacity):
     # Configuration
     output_folder = "/Users/z5263438/Codes/Code Python/Share with Joule/Output/"
     filename = "New_Joule_DE_share.json"
@@ -71,7 +71,7 @@ def main():
 
     for t in range(len(Module_incentives)):
         for s in range(2):
-            i = 600000000
+            i = Capacity
 
             Equipment = data_Joule[str(i)]["Equipment"][s] - \
                         (data_Joule[str(i)]["Equipment"][s] * Equipment_incentives[t])
@@ -177,10 +177,13 @@ def main():
                     else:
                         continue
 
-        IRRR.append(IRR * 100)
-        MSP.append(Selling_price)
-
-    print(IRRR, ",")
+            IRRR.append(IRR * 100)
+            MSP.append(Selling_price)
+    
+        print(IRRR, ",")
+        print(MSP, ",")
+        IRRR = []
+        MSP = []
 
 if __name__ == "__main__":
-    main()
+    main(Capacity)
